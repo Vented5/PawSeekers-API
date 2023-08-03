@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongoose": "^7.4.1"
+  },
+  "name": "pawseekers-api",
+  "description": "Reposirory for the PawSeekers project API",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vented5/PawSeekers-API.git"
+  },
+  "author": "Vented5",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vented5/PawSeekers-API/issues"
+  },
+  "homepage": "https://github.com/Vented5/PawSeekers-API#readme"
+}
