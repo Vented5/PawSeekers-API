@@ -1,0 +1,16 @@
+<% layout('layout') %>
+
+  <%- include('navbar') %>
+
+<section>
+    Wenas este es el track
+    <div class="w-full h-64">
+        <div id="map" class="map"></div>
+      </div>
+</section>
+
+<script src="src/scripts/request.js"></script>
+
+ <script async src="https://maps.googleapis.com/maps/api/js?key=<%= apiKey %>
+&libraries=places&callback=initMap">
+</script>

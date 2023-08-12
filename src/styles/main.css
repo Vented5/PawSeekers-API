@@ -1,0 +1,23 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    background-color: #000025;
+}
+
+.container {
+    color:aqua;
+}
+
+
+.map {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+#map {
+    height: 100%;
+}

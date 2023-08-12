@@ -1,0 +1,75 @@
+<% layout('layout') %>
+
+  <%- include('navbar') %>
+
+    <section class="min-h-screen flex"
+      style="background-image: url('./src/images/jf-brou-915UJQaxtrk-unsplash.jpg'); background-size: cover;">
+
+      <form action="https://paw-seekers-api-vented5.vercel.app/api/pets/newpet" method="post" enctype="multipart/form-data" class="flex flex-col h-fit w-2/3 my-4 m-auto  bg-slate-100 rounded-lg drop-shadow-2xl p-8 space-y-4">
+
+
+          <h1 class="text-4xl font-semibold">Crea un reporte para tu mascota perdida</h1>
+
+          <p class="text-lg font-semibold">Seleciona una especie:</p>
+          <label>
+            <input type="radio" name="specie" value="perro"> Perro
+          </label>
+          <label>
+            <input type="radio" name="specie" value="gato"> Gato
+          </label>
+
+          <label for="namePet" class="text-lg font-semibold">Nombre de la mascota:</label><br>
+          <input type="text" id="namePet" name="pet_name" placeholder="Timmy">
+
+
+          <label class="text-lg font-semibold">Describa su apariencia lo mejor posible:</label>
+          
+          <label class="text-lg font-semibold">Color:</label>
+          <input type="text" id="colorPet" name="pet_color" placeholder="marron">
+          
+          <label for="charaPet" class="text-lg font-semibold">Peculiaridades</label>
+          <input type="text" id="charaPet" name="pet_chara" placeholder="Mancha blanca en el pecho">
+
+
+          <label for="accesoriesPet" class="text-lg font-semibold">¿Cuenta con algun accesorio?</label>
+          <input type="text" id="accesoriesPet" name="pet_accesories" placeholder="Collar azul">
+
+
+          <label for="trackPet" class="text-lg font-semibold">Seleccione ssu ultima localizacion conocida:</label>
+          
+          <div>
+            <input id="address" type="textbox" placeholder="SuperMarket, SomeStreet" class="text-2xl">
+            <input type="button" value="Buscar" onclick="codeAddress()" class="bg-green-400 py-1 px-4 rounded-full">
+          </div>
+          <div class="w-full h-64">
+            <div id="map" class="map"></div>
+          </div>
+
+
+              <input id="lat" name="pet_lat" type="text" class="hidden">
+              <input id="lng" name="pet_lng" type="text" class="hidden">
+              
+          
+          <label for="photoPet" class="font-semibold">Agruegue una foto de su mascota</label>
+          <input type="file" id="photoPet" name="pet_photo">
+
+
+          <label for="personalityPet" class="text-lg font-semibold">¿Cuál es la personalidad del animal?</label>
+          <select name="pet_personality">
+            <option value="Agresivo">Agresivo</option>
+            <option value="Timido">Timido</option>
+            <option value="Nervioso">Nervioso</option>
+            <option value="Amigable">Amigable</option>
+            <option value="Revelde">Revelde</option>
+          </select>
+
+
+        <input type="submit" value="Submit" class="rounded-xl bg-green-500 p-2">
+      </form>
+    </section>
+
+    <script src="src/scripts/request.js"></script>
+
+     <script async src="https://maps.googleapis.com/maps/api/js?key=<%= apiKey %>
+    &libraries=places&callback=initMap">
+    </script>

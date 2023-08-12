@@ -1,0 +1,48 @@
+<% layout('layout') %>
+
+    <%- include('navbar') -%>
+
+        <%# Seekers scree:n %>
+
+            <section class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4 place-content-between p-12 ">
+
+                <section class="w-full md:w-2/3">
+                    <div id="map" class="map"> </div>
+
+                </section>
+
+                <section id="reports" class="flex flex-col space-y-4">
+                    
+                    <%- pet.name  %>
+                    <div class="bg-teal-500 rounded-t-lg p-2 text-2xl text-white">Missing pets reports</div>
+
+                    <div id="reportCard" class="flex  border border-teal-400 rounded-xl">
+                        <img src="src/images/Jupiter2.jpeg" alt="jupiter image" class="h-40 w-40 rounded-l-xl">
+                        <div class="m-2">
+                            <h1 class="text-xl">Jupiter</h1>
+                            <p>Gato 😼</p>
+                            <p>Chihuahua, Mexico 🌮 </p>
+                            <p>Ultima vez visto:</p>
+                            <p></p>
+                        </div>
+
+                    </div>
+
+                    <div id="reportCard" class="flex border border-teal-400 rounded-xl">
+                        <img src="src/images/RandomHusky.jpg" alt="jupiter image" class="h-40 w-40 rounded-l-xl">
+                        <div class="m-2">
+                            <h1 class="text-xl">Jack</h1>
+                            <p>Dogo 🐶</p>
+                            <p>Chihuahua, Mexico 🌮 </p>
+                            <p>Ultima vez visto:</p>
+                            <p>Parque fundadores</p>
+                        </div>
+                    </div>
+
+                </section>
+            </section>
+            <script src="src/scripts/map.js"></script>
+            
+     <script async src="https://maps.googleapis.com/maps/api/js?key=<%= apiKey %>
+        &libraries=places&callback=initMap">
+        </script>

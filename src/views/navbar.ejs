@@ -1,0 +1,22 @@
+<nav class=" flex items-center justify-between bg-gradient-to-r from-primary from-55% to-green-500 px-3 py-2 text-white ">
+    <a href="/" class="text-4xl">PawSeekers</a>
+    
+    <div class="flex space-x-8">
+        <a href="/find">Join the search</a>
+        <a href="/request">Create a report</a>
+        <a href="/track">Track my pet</a>
+        <a href="">Adopt</a>        
+    </div>
+
+    <div>
+        <% if(user) {%>
+            <a href="/profile">Profile</a>
+            <a href="/logout">Logout</a>
+        <% } else {%>
+            
+            <a href="/log" class=" flex items-center justify-center bg-white text-teal-600 rounded-full py-2 px-4 gap-x-2 hover:bg-slate-200"> Log In 
+                <img src="/src/icons/flechar-50.png" class="h-4 ">
+            </a>
+         <% } %>
+    </div>
+</nav>

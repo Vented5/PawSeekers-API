@@ -1,0 +1,41 @@
+<%- layout('layout') -%>
+    <section class="flex bg-cover w-screen h-screen justify-center"
+        style="background-image: url('../images/dogbg.jpg')">
+
+
+        <section class=" flex justify-center h-fit mt-auto mb-auto bg-white rounded-lg drop-shadow-2xl p-8 w-fit">
+            <div class="flex-col ">
+                <form name="form" action="/reg" method="post" class="space-y-6">
+                    <a href="/" class="ntext-blue-700 hover:underline dark:text-blue-500">Home</a>
+                    <h2 class="text-2xl w-fit">Register</h2>
+                    <div>
+                        <label for="usr" class="block mb-2 text-sm font-medium text-gray-900">Nombre</label>
+                        <input type="text" name="usr" id="usr" placeholder="name@company.com" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-500 dark:placeholder-gray-400">
+                    </div>
+                    <div>
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Correo</label>
+                        <input type="email" name="email" id="email" placeholder="name@company.com" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-500 dark:placeholder-gray-400">
+                    </div>
+                    <% if (signupMessage.lenght > 0) { %>
+                        <div> <%= signupMessage %> </div>
+                    <% } %>
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Contraseña</label>
+                        <input type="password" name="password" id="password" placeholder="name@company.com" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-500 dark:placeholder-gray-400">
+                    </div>
+                    <div name="errorMsg"></div>
+
+                    <button type="submit"
+                        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register</button>
+                    Tienes cuenta?
+                    <a href="/log" class="text-blue-700 hover:underline dark:text-blue-500">
+                        Inicia sesion
+                    </a>
+            </div>
+        </section>
+
+
+
+    </section>
+
+    
