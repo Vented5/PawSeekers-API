@@ -2,15 +2,6 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user');
 
-passport.serializeUser((user, done) => {  //Crea un nuevo usuario)? credenciales? algo asi
-    done(null, user.id);
-    console.log(user.id);
-});
-
-passport.deserializeUser(async (id, done) => { //Si existe las encuentra y regresa el usuario
-    const user = await User.findById(id);
-    done(null, user);
-});
 
 // ----------------   SIGNUP   ---------------------
 passport.use('local-signup', new LocalStrategy({  //Estrategia de validdacion del modulo passport local
@@ -50,4 +41,14 @@ passport.use('local-signin', new LocalStrategy({
     }
     console.log("Ahueso, se encontro el usuario");
     done(null, user); // Si no hay error regresa el usuario
-}))
+}));
+
+passport.serializeUser((user, done) => {  //Crea un nuevo usuario)? credenciales? algo asi
+    done(null, user.id);
+    console.log(user.id);
+});
+
+passport.deserializeUser(async (id, done) => { //Si existe las encuentra y regresa el usuario
+    const user = await User.findById(id);
+    done(null, user);
+});

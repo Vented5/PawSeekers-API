@@ -4,10 +4,12 @@ const mongoose = require('mongoose');
 const path = require('path'); 
 const port = process.env.PORT || 3000;
 const engine = require('ejs-mate'); 
-const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
+const passport = require('passport');
 const cors = require('cors'); //Permite devolver objetos json de manera segura
+const fileUpload = require('express-fileupload');
+
 
 //Congiguracion de exspress
 const app = express();
@@ -24,7 +26,11 @@ app.use('/src',express.static(path.join(process.cwd(), 'src'))); //Sin este no j
 //app.use('/images', express.static(path.join(process.cwd(), 'src/images')));
 //app.use('/icons', express.static(path.join(process.cwd(), 'src/icons'))); 
 app.use(express.json());
-//app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
+app.use(fileUpload( {
+  limits: {fileSize: 10000000},
+  abortOnLimit: true,
+} ));
 
 app.use(session({
   secret: 'SuicideZanero', //Clave adicional de seguridad
