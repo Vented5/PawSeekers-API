@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose'); //NO BORRAR, no importa lo que visual diga!!!! 
 const cors = require('cors'); //Permite devolver objetos json de manera segura
 
 router.use(cors());
@@ -7,7 +8,7 @@ router.use(cors());
 const User = require('../models/user');
 const Pets = require('../models/pets');
 
-router.get('/api/users/:email', async (req, res) => {
+router.get('/users/:email', async (req, res) => {
     try {
       const { email } = req.params;
   
@@ -25,7 +26,7 @@ router.get('/api/users/:email', async (req, res) => {
     }
   });
   
-router.get('/api/pets/:name', async (req, res) => {
+router.get('/pets/:name', async (req, res) => {
     try {
       const { name } = req.params;
   
@@ -42,7 +43,8 @@ router.get('/api/pets/:name', async (req, res) => {
   });
   
   //Missing reports nearby
-  router.get('/api/pets/:location', async (req, res) => {
+  
+  router.get('/missing_nearby/:location', async (req, res) => {
     try {
       const pets = await Pets.find();
       res.json({ pets });

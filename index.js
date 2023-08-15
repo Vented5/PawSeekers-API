@@ -8,7 +8,15 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const cors = require('cors'); //Permite devolver objetos json de manera segura
-const fileUpload = require('express-fileupload');
+
+const admin = require('firebase-admin');
+
+var serviceAccount = require("./credentials/pawseekers-firebase-adminsdk-m62jr-09762a14ca.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  storageBucket: 'gs://pawseekers.appspot.com'
+});
 
 
 //Congiguracion de exspress
@@ -27,10 +35,7 @@ app.use('/src',express.static(path.join(process.cwd(), 'src'))); //Sin este no j
 //app.use('/icons', express.static(path.join(process.cwd(), 'src/icons'))); 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(fileUpload( {
-  limits: {fileSize: 10000000},
-  abortOnLimit: true,
-} ));
+
 
 app.use(session({
   secret: 'SuicideZanero', //Clave adicional de seguridad

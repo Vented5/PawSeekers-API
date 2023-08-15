@@ -2,7 +2,19 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const cors = require('cors'); //Permite devolver objetos json de manera segura
-const fileUpload = require('express-fileupload');
+
+const admin = require('firebase-admin');
+const multer = require('multer');
+
+
+const bucket = admin.storage().bucket();
+
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 5 * 1024 * 1024 // Limitar el tamaño de archivo a 5 MB
+  }
+});
 
 router.use(cors());
 
@@ -25,7 +37,7 @@ router.get('/request', (req, res) => {
   res.render('request.ejs', { apiKey: process.env.APIKEY });
 });
 
-router.post('/request', async (req, res) => {
+router.post('/request', upload.single('pet_photo'), async (req, res) => {
   const newPet = new Pet();
   newPet.specie = req.body.specie;
   newPet.name = req.body.pet_name;
@@ -36,17 +48,30 @@ router.post('/request', async (req, res) => {
   newPet.personality = req.body.pet_personality;
   newPet.lastLocation.lat = req.body.pet_lat;
   newPet.lastLocation.lng = req.body.pet_lng;
-  const { pet_photo } = req.files;
-  newPet.photo = 'src/upload/petPhotos/' + pet_photo.name; 
-  await newPet.save(); 
-  console.log(req.body);
-  //if (!pet_photo) return res.sendStatus(400);
+  
+  try{
+    const file = req.file;
+    if(!file){
+      return res.status(400).send('No se ha proporcionado una imagen');
+    }
+     
+    const blob = bucket.file(file.originalname);
+    const blobStream = blob.createWriteStream();
+    blobStream.end(file.buffer);
+    
+    blobStream.on('finish', async () => {
+      newPet.photo = 'src/upload/petPhotos/' + file.name;
+      await newPet.save(); 
+      res.status(200).send('Imagen subida con exito');
+    });
+  }catch (error) {
+    console.error('Error al subir imagen: ', error);
+    res.status(500).send('Error al subir imagen');
+  }
+  
+  //Guardar en la bd
+  
 
-  pet_photo.mv(__dirname + '/../upload/petPhotos/' + pet_photo.name);
-  
-  if (/^pet_photo/.test(pet_photo.mimetype)) return res.sendStatus(400);
-  
-  res.send('Datos recibidos');
 });
 
 router.get('/track', (req, res) => {
