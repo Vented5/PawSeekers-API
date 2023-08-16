@@ -11,7 +11,7 @@ const cors = require('cors'); //Permite devolver objetos json de manera segura
 
 const admin = require('firebase-admin');
 
-var serviceAccount = require("./credentials/pawseekers-firebase-adminsdk-m62jr-09762a14ca.json");
+var serviceAccount = require("./credentials/pawseekers-firebase-adminsdk-m62jr-cae473560c.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
