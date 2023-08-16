@@ -45,7 +45,7 @@ passport.use('local-signin', new LocalStrategy({
 
 passport.serializeUser((user, done) => {  //Crea un nuevo usuario)? credenciales? algo asi
     done(null, user.id);
-    console.log(user.id);
+
 });
 
 passport.deserializeUser(async (id, done) => { //Si existe las encuentra y regresa el usuario

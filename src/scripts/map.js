@@ -14,7 +14,63 @@ function initMap() {
 
 }
 
-//document.getElementById("reports").innerHTML = 
+
+//document.getElementById("reports").innerHTML =
+/*
+fetch('https://paw-seekers-api-vented5.vercel.app/api/missing_nearby/12')
+    .then(response => {
+        if(!response.ok){
+            throw new Error('Error en la llamada de la apu');
+        }
+        return response.json();
+    })
+    .then(data => {
+        //Aqui se despliega
+        document.getElementById("reports").innerHTML += "<img src='"+ data.pets[0].imgUrl +"'>"
+        console.log(data.pets[0].imgUrl);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    }); 
+*/
+async function missingPetsFeed () {
+        
+    try {
+        const response = await fetch('https://paw-seekers-api-vented5.vercel.app/api/missing_nearby/12');
+        if(!response.ok){
+            throw new Error('Error en la llamada de la api');
+        }
+
+        const data = await response.json();
+        const reportCards = data.pets.map(item => generateReportCard(item)).join('');
+        console.log(data);
+        document.getElementById("reports").innerHTML += reportCards
+    } catch (error) {
+        console.error('Error:', error);
+    }
+
+}
+
+function generateReportCard (cardData) {
+    return `
+        <div class="flex  border border-teal-400 rounded-xl">
+            <img src="${cardData.imgUrl}" alt="${cardData.name}_photo" class="h-40 w-40 rounded-l-xl">
+            <div class="m-2">
+                <h1 class="text-xl">${cardData.name}</h1>
+                <p>${cardData.color}</p>
+                <p>${cardData.characteristics}</p>
+                <p>${cardData.accesories}</p>
+                <p>${cardData.lastLocation}</p>
+                <p>Ultima vez visto:</p>
+                <p></p>
+            </div>
+
+        </div>
+    `;
+}
+
+missingPetsFeed();
+
 /*
 function codeAddress() {
     var address  = document.getElementById('address').value;

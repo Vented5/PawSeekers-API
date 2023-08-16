@@ -18,6 +18,17 @@
             <input type="radio" name="specie" value="gato"> Gato
           </label>
 
+          <p class="text-lg font-semibold">Especifique el sexo:</p>
+          <label>
+            <input type="radio" name="sex" value="macho"> M
+          </label>
+          <label>
+            <input type="radio" name="sex" value="hembra"> H
+          </label>
+          <label>
+            <input type="radio" name="sex" value="desconocido"> desconocido
+          </label>
+
           <label for="namePet" class="text-lg font-semibold">Nombre de la mascota:</label><br>
           <input type="text" id="namePet" name="pet_name" placeholder="Timmy">
 
@@ -38,7 +49,7 @@
           <label for="trackPet" class="text-lg font-semibold">Seleccione ssu ultima localizacion conocida:</label>
           
           <div>
-            <input id="address" type="textbox" placeholder="SuperMarket, SomeStreet" class="text-2xl">
+            <input id="address" name="address" type="textbox" placeholder="SuperMarket, SomeStreet" class="text-2xl">
             <input type="button" value="Buscar" onclick="codeAddress()" class="bg-green-400 py-1 px-4 rounded-full">
           </div>
           <div class="w-full h-64">

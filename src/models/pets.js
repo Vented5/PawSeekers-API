@@ -7,11 +7,13 @@ const petSchema = new mongoose.Schema({
     color: String,
     characteristics: String,
     accesories: String,
-    lastLocation: { lat: Number, lng: Number },
+    coordinates: { lat: Number, lng: Number },
+    lastLocation: String,
     numUser: Number,
     proced: Boolean,
-    photo: String,
-    completed: Boolean
+    imgUrl: String,
+    completed: Boolean,
+    sex: String
 });
 
 module.exports = mongoose.model('pets', petSchema);

@@ -29,7 +29,6 @@ router.get("/", (req, res) => {
 
 router.get('/find', (req, res) => {
   const pet = Pet.findById("64cb0128351b6950a2818132");
-  console.log(pet.name);
   res.render('map.ejs', { apiKey: process.env.APIKEY, pet });
 });
 
@@ -38,16 +37,19 @@ router.get('/request', (req, res) => {
 });
 
 router.post('/request', upload.single('pet_photo'), async (req, res) => {
+  console.log(req.body);
   const newPet = new Pet();
   newPet.specie = req.body.specie;
   newPet.name = req.body.pet_name;
+  newPet.sex = req.body.sex;
   newPet.color = req.body.pet_color;
   newPet.characteristics = req.body.pet_chara;
   newPet.accesories = req.body.pet_accesories;
   newPet.completed = false;
   newPet.personality = req.body.pet_personality;
-  newPet.lastLocation.lat = req.body.pet_lat;
-  newPet.lastLocation.lng = req.body.pet_lng;
+  newPet.coordinates.lat = req.body.pet_lat;
+  newPet.coordinates.lng = req.body.pet_lng;
+  newPet.lastLocation = req.body.address;
   
   try{
     const file = req.file;
@@ -59,10 +61,21 @@ router.post('/request', upload.single('pet_photo'), async (req, res) => {
     const blobStream = blob.createWriteStream();
     blobStream.end(file.buffer);
     
-    blobStream.on('finish', async () => {
-      newPet.photo = 'src/upload/petPhotos/' + file.name;
-      await newPet.save(); 
-      res.status(200).send('Imagen subida con exito');
+    blobStream.on('finish', async () => { //Al crear con exito la imagen aqui se puede agregar acciones
+      
+      const [url] = await blob.getSignedUrl({
+        action: 'read',
+        expires: '01-01-3000'
+      });
+      newPet.imgUrl = url;
+      try {
+        await newPet.save(); 
+        res.status(200).send('Imagen subida con exito');
+      } catch (saveError) {
+        console.error('Error al guardar en la base de datos: ', saveError);
+        res.status(500).send('Error al guardar en la base de datos')
+      }
+      
     });
   }catch (error) {
     console.error('Error al subir imagen: ', error);
