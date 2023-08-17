@@ -2,14 +2,34 @@
 
   <%- include('navbar') %>
 
-<section>
-    Wenas este es el track
-    <div class="w-full h-64">
-        <div id="map" class="map"></div>
+<section class=" h-full p-8 ">
+
+    <div class="flex h-fit justify-center pb-6">
+      <h1 class="text-3xl w-fit font-semibold">Mis mascotas:</h1>
+    </div>
+
+    <div id="main" class="space-y-6">
+      <div class="flex border-teal-600 rounded-lg border-4 font-sans text-3xl p-4 items-center">
+        <img src="/src/icons/collar.png" alt="">
+        <p class="ml-8">Collar 1</p>
+        <button class="bg-green-400 ml-auto rounded-full p-2" onclick="displayMap()">Track</button>
+      </div>
+  
+      <div class="flex border-teal-600 rounded-lg border-4 font-sans text-3xl p-4 items-center">
+        <img src="/src/icons/plus.png" alt="">
+        <p class="ml-8">Agregar collar</p>
+      </div>
+  
+  
+    </div>
+    
+
+    <div class="w-full h-2/3">
+        <div id="map" class="map hidden"></div>
       </div>
 </section>
 
-<script src="src/scripts/request.js"></script>
+<script src="src/scripts/track.js"></script>
 
  <script async src="https://maps.googleapis.com/maps/api/js?key=<%= apiKey %>
 &libraries=places&callback=initMap">

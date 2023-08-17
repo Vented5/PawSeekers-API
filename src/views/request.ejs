@@ -5,38 +5,59 @@
     <section class="min-h-screen flex"
       style="background-image: url('./src/images/jf-brou-915UJQaxtrk-unsplash.jpg'); background-size: cover;">
 
-      <form action="/request" method="post" enctype="multipart/form-data" class="flex flex-col h-fit w-2/3 my-4 m-auto  bg-slate-100 rounded-lg drop-shadow-2xl p-8 space-y-4">
-
+      <form action="/request" method="post" enctype="multipart/form-data" class="flex flex-col h-fit w-2/3 my-4 m-auto bg-slate-100 rounded-lg drop-shadow-2xl p-16 space-y-4">
 
           <h1 class="text-4xl font-semibold">Crea un reporte para tu mascota perdida</h1>
 
-          <p class="text-lg font-semibold">Seleciona una especie:</p>
-          <label>
-            <input type="radio" name="specie" value="perro"> Perro
-          </label>
-          <label>
-            <input type="radio" name="specie" value="gato"> Gato
-          </label>
+          <section class="flex justify-around">
+            
+            <div>
+            <p class="text-lg font-semibold">Seleciona una especie:</p>
+            <label class="flex items-center space-x-4">
+              <img src="/src/icons/perro.png" alt="">
+              <input type="radio" name="specie" value="perro"> 
+              <p>Perro </p>
+            </label>
+            <label class="flex items-center space-x-4">
+              <img src="/src/icons/gato.png" alt="" class="h-14">
+              <input type="radio" name="specie" value="gato">
+              <p> Gato</p>
+            </label>
+          </div>
+  
+          <div class="flex-col">
+            <p class="text-lg font-semibold">Especifique el sexo:</p>
+            <label class="flex items-center space-x-4">
+              <img src="/src/icons/male.png" alt="" class="h-14">
+              <input type="radio" name="sex" value="macho"> 
+              <p>M</p>
+            </label>
+            <label class="flex items-center space-x-4">
+              <img src="/src/icons/female.png" alt="" class="h-12">
+              <input type="radio" name="sex" value="hembra"> 
+              <p>H</p>
+            </label>
+            <label class="flex items-center space-x-4">
+              <input type="radio" name="sex" value="desconocido"> 
+              <p>desconocido</p>
+            </label>
+  
+          </div>
+  
+          </section>
 
-          <p class="text-lg font-semibold">Especifique el sexo:</p>
-          <label>
-            <input type="radio" name="sex" value="macho"> M
-          </label>
-          <label>
-            <input type="radio" name="sex" value="hembra"> H
-          </label>
-          <label>
-            <input type="radio" name="sex" value="desconocido"> desconocido
-          </label>
-
-          <label for="namePet" class="text-lg font-semibold">Nombre de la mascota:</label><br>
-          <input type="text" id="namePet" name="pet_name" placeholder="Timmy">
-
-
-          <label class="text-lg font-semibold">Describa su apariencia lo mejor posible:</label>
+          <section class="flex justify-start space-x-24">
+            
+          <div class="flex-col">
+            <label for="namePet" class="text-lg font-semibold">Nombre de la mascota:</label><br>
+            <input type="text" id="namePet" name="pet_name" placeholder="Timmy">
+          </div>
           
-          <label class="text-lg font-semibold">Color:</label>
-          <input type="text" id="colorPet" name="pet_color" placeholder="marron">
+          <div class="flex-col">
+            <label class="text-lg font-semibold">Color:</label><br>
+            <input type="text" id="colorPet" name="pet_color" placeholder="marron">  
+          </div>
+          </section>
           
           <label for="charaPet" class="text-lg font-semibold">Peculiaridades</label>
           <input type="text" id="charaPet" name="pet_chara" placeholder="Mancha blanca en el pecho">
@@ -52,7 +73,7 @@
             <input id="address" name="address" type="textbox" placeholder="SuperMarket, SomeStreet" class="text-2xl">
             <input type="button" value="Buscar" onclick="codeAddress()" class="bg-green-400 py-1 px-4 rounded-full">
           </div>
-          <div class="w-full h-64">
+          <div class="w-full h-96">
             <div id="map" class="map"></div>
           </div>
 
@@ -71,7 +92,7 @@
             <option value="Timido">Timido</option>
             <option value="Nervioso">Nervioso</option>
             <option value="Amigable">Amigable</option>
-            <option value="Revelde">Revelde</option>
+            <option value="Revelde">Rebelde</option>
           </select>
 
 

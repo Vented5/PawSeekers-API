@@ -70,7 +70,7 @@ router.post('/request', upload.single('pet_photo'), async (req, res) => {
       newPet.imgUrl = url;
       try {
         await newPet.save(); 
-        res.status(200).send('Imagen subida con exito');
+        res.redirect('/find');
       } catch (saveError) {
         console.error('Error al guardar en la base de datos: ', saveError);
         res.status(500).send('Error al guardar en la base de datos')
@@ -110,6 +110,11 @@ router.post('/log', passport.authenticate('local-signin', { //Describe el metodo
   router.get('/reg', (req, res) => {
     res.render('register.ejs');
   });
+
+  router.get('/adopt', (req, res) => {
+    res.render('adopt.ejs');
+  });
+  
   
   router.post('/reg', passport.authenticate('local-signup', {
     successRedirect: '/',

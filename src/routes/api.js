@@ -7,6 +7,7 @@ router.use(cors());
 
 const User = require('../models/user');
 const Pets = require('../models/pets');
+const Collars = require('../models/collars');
 
 router.get('/users/:email', async (req, res) => {
     try {
@@ -55,7 +56,7 @@ router.get('/pets/:name', async (req, res) => {
     }
   });
   
-  router.post('/api/pets/newpet', async (req, res) => {
+  router.post('/pets/newpet', async (req, res) => {
     const newPet = new Pets();
     newPet.specie = req.body.specie;
     newPet.name = req.body.pet_name;
@@ -64,6 +65,13 @@ router.get('/pets/:name', async (req, res) => {
   
     res.send('Datos recibidos');
   });
-  
+
+  //Actualizar ubicacion de un collar
+  router.get('/collars/update/:id/:lat/:lng'), (req, res) => {
+    const collar = new collars();
+    collar.updateOne(
+      {_id: id},
+      {$push: {locationHistory: {lat: lat, lng: lng} } });
+  }
 
 module.exports = router;

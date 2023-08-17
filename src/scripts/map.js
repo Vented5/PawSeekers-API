@@ -6,7 +6,7 @@ function initMap() {
     //var place = { lat: 28.6140224, lng: -106.125015 };
 
     var mapOptions = {
-        zoom: 15,
+        zoom: 13,
         center: latlng
     }
 
@@ -43,15 +43,23 @@ async function missingPetsFeed () {
 
         const data = await response.json();
         const reportCards = data.pets.map(item => generateReportCard(item)).join('');
-        console.log(data);
-        document.getElementById("reports").innerHTML += reportCards
+        document.getElementById("reports").innerHTML += reportCards;
     } catch (error) {
         console.error('Error:', error);
     }
 
 }
 
+
+
 function generateReportCard (cardData) {
+    console.log(cardData.coordinates);
+    var marker = new google.maps.Marker({
+        position: cardData.coordinates, // Ubicación del marcador
+        map: map, // Mapa al que se añadirá el marcador
+        icon: '/src/icons/Mark2_64px.png',
+        title: cardData.name // Título del marcador (se muestra al pasar el mouse sobre él)
+      });
     return `
         <div class="flex  border border-teal-400 rounded-xl">
             <img src="${cardData.imgUrl}" alt="${cardData.name}_photo" class="h-40 w-40 rounded-l-xl">

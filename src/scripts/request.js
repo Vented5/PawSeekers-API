@@ -22,7 +22,8 @@ function codeAddress() {
             map.setCenter(results[0].geometry.location);
             var marker = new google.maps.Marker({
                 map: map,
-                position: results[0].geometry.location
+                position: results[0].geometry.location,
+                icon: '/src/icons/Mark2_64px.png',
             });
             document.getElementById("lat").value = marker.getPosition().lat();
             document.getElementById("lng").value = marker.getPosition().lng();
