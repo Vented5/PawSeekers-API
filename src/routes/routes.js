@@ -27,7 +27,7 @@ router.get("/", (req, res) => {
   res.render('home.ejs');
 });
 
-router.get('/find', isAuthenticated, (req, res) => {
+router.get('/find', (req, res) => {
   const pet = Pet.findById("64cb0128351b6950a2818132");
   res.render('map.ejs', { apiKey: process.env.APIKEY, pet });
 });
