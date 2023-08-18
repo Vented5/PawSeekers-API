@@ -115,6 +115,9 @@ router.post('/log', passport.authenticate('local-signin', { //Describe el metodo
     res.render('adopt.ejs');
   });
   
+  router.get('/about', (req, res) => {
+    res.render('about.ejs');
+  });
   
   router.post('/reg', passport.authenticate('local-signup', {
     successRedirect: '/',
