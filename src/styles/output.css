@@ -839,6 +839,10 @@ video {
   display: none;
 }
 
+.h-1\/5 {
+  height: 20%;
+}
+
 .h-12 {
   height: 3rem;
 }
@@ -2951,6 +2955,10 @@ video {
 }
 
 @media (min-width: 768px) {
+  .md\:flex {
+    display: flex;
+  }
+
   .md\:w-2\/3 {
     width: 66.666667%;
   }
