@@ -27,12 +27,12 @@ router.get("/", (req, res) => {
   res.render('home.ejs');
 });
 
-router.get('/find', (req, res) => {
+router.get('/find', isAuthenticated, (req, res) => {
   const pet = Pet.findById("64cb0128351b6950a2818132");
   res.render('map.ejs', { apiKey: process.env.APIKEY, pet });
 });
 
-router.get('/request', (req, res) => {
+router.get('/request', isAuthenticated, (req, res) => {
   res.render('request.ejs', { apiKey: process.env.APIKEY });
 });
 
@@ -87,11 +87,11 @@ router.post('/request', upload.single('pet_photo'), async (req, res) => {
 
 });
 
-router.get('/track', (req, res) => {
+router.get('/track', isAuthenticated, (req, res) => {
   res.render('track.ejs', { apiKey: process.env.APIKEY });
 });
 
-router.get('/profile', (req, res) => {
+router.get('/profile', isAuthenticated, (req, res) => {
   res.render('profile.ejs', { apiKey: process.env.APIKEY });
 });
 
