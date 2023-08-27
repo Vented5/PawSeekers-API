@@ -31,6 +31,8 @@ app.engine('ejs', engine);
 //Middelwares
 app.use(cors());
 app.use('/src',express.static(path.join(process.cwd(), 'src'))); //Sin este no jala el css
+app.use('/node_modules', express.static(path.join(process.cwd(), 'node_modules')));
+
 //app.use('/images', express.static(path.join(process.cwd(), 'src/images')));
 //app.use('/icons', express.static(path.join(process.cwd(), 'src/icons'))); 
 app.use(express.json());
